@@ -1,0 +1,45 @@
+{
+  "user": {
+    "id": "1",
+    "email": "user@email.com"
+  },
+  "posts": [
+    {
+      "id": "2",
+      "creator": "creator@gmail.com",
+      "content": "Publicación 1",
+      "createdAt": "22/09/2023"
+    },
+    {
+      "id": "1",
+      "creatorId": "2",
+      "creator": "creator@gmail.com",
+      "content": "Publicación 2",
+      "createdAt": "15/09/2023"
+    }
+  ],
+  "suscriptions": [
+    {
+      "userTopicId": "1",
+      "email": "topic1@gmail.com"
+    },
+    {
+      "userTopicId": "2",
+      "email": "topic2@gmail.com"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "content": "Notificacion 1",
+      "isOpened": 1,
+      "createdAt": "15/08/2023"
+    },
+    {
+      "id": "2",
+      "content": "Notificacion 2",
+      "is_opened": 0,
+      "created_at": "15/08/2023"
+    }
+  ]
+}
