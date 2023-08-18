@@ -15,12 +15,6 @@ class AppError extends Error {
 }
 
 class UnauthorizedError extends AppError {
-  constructor(message = "Unauthorized") {
-    super(message, 401);
-  }
-}
-
-class UnauthorizedError extends AppError {
   constructor(message, error = null) {
     super(message || "No autorizado", 401, error);
   }
@@ -70,7 +64,7 @@ class BadRequestError extends AppError {
   }
 }
 
-export {
+module.exports = {
   AppError,
   UnauthorizedError,
   ConflictError,
