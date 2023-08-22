@@ -1,10 +1,10 @@
+const { successResponse } = require("../../handlers/responseHandler");
 const { login } = require("./auth.handler");
 
 const loginController = async ({ body }, res, next) => {
   try {
     const data = await login(body);
-    res.send(data);
-    console.log(data);
+    return successResponse(data, "Login successful")(res);
   } catch (error) {
     next(error);
   }

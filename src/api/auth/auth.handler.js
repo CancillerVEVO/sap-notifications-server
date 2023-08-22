@@ -7,8 +7,6 @@ const login = async ({ email, password }) => {
     ACTION: "1",
   });
 
-  console.log(data);
-
   return data;
 };
 
