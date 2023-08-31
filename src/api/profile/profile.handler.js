@@ -6,7 +6,18 @@ const getLanding = async (userId) => {
     ACTION: "2",
   });
 
-  return data;
+  const cleanData = {
+    posts: data.posts,
+    subscriptions: data.subscriptions,
+    notifications: data.notifications.map((notif) => {
+      return {
+        ...notif,
+        isOpened: notif.isOpened === "X" ? true : false,
+      };
+    }),
+  };
+
+  return cleanData;
 };
 
 module.exports = { getLanding };
