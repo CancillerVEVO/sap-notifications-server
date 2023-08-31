@@ -6,15 +6,18 @@ class SAPService {
   }
 
   async callEndpoint(requestBody) {
+    console.log("requestBody", requestBody);
     const response = await fetch(this.baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(requestBody),
     });
 
     const status = response.status;
+
     const message = await response.json();
 
     if (status === 404) {
