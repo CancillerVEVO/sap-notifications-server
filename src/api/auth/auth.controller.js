@@ -3,9 +3,9 @@ const { login } = require("./auth.handler");
 
 const loginController = async ({ body }, res, next) => {
   try {
-    const token = await login(body);
+    const { token, userId } = await login(body);
     res.cookie("token", token);
-    return successResponse(token, "Login successful")(res);
+    return successResponse(userId, "Login successful")(res);
   } catch (error) {
     next(error);
   }

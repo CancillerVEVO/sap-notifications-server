@@ -6,7 +6,6 @@ class SAPService {
   }
 
   async callEndpoint(requestBody) {
-    console.log("requestBody", requestBody);
     const response = await fetch(this.baseUrl, {
       method: "POST",
       headers: {

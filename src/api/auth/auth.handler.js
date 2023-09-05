@@ -8,9 +8,14 @@ const login = async ({ email, password }) => {
     ACTION: "1",
   });
 
+  const { userId } = data;
+
   const token = generateToken(data);
 
-  return token;
+  return {
+    token,
+    userId,
+  };
 };
 
 module.exports = { login };
