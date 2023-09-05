@@ -1,16 +1,36 @@
 const io = require("socket.io");
+const Clients = require("./utils/Clients");
+
+const clients = new Clients();
 
 function configureSocketServer(server) {
-  const socketServer = io(server);
+  const socketServer = io(server, {
+    cors: {
+      origin: process.env.CLIENT_URL,
+      credentials: true,
+    },
+  });
 
   socketServer.on("connection", (socket) => {
-    console.log("A user connected");
+    socket.on("login", ({ userId }) => {
+      clients.saveClient(userId, socket.id);
 
-    // Aquí puedes agregar lógica para manejar eventos de Socket.io, por ejemplo:
-    // socket.on("mensaje", (data) => {
-    //   console.log("Mensaje recibido:", data);
-    //   socket.emit("respuesta", "Mensaje recibido con éxito");
-    // });
+      console.log("clients", clients.clientsMap);
+    });
+
+    socket.on("subscribe", (data) => {
+      const { userId } = data;
+
+      const clientId = clients.getClient(userId);
+
+      if (clientId) {
+        console.log("clientId", clientId);
+
+        socket.to(clientId).emit("notification", data);
+      } else {
+        console.log("User not found");
+      }
+    });
 
     socket.on("disconnect", () => {
       console.log("User disconnected");
